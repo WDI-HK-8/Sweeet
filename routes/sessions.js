@@ -1,5 +1,6 @@
 var Bcrypt = require('bcrypt');
 var Auth = require('./auth');
+var Joi = require('joi');
 
 exports.register = function(server, options, next) {
 
@@ -7,46 +8,55 @@ exports.register = function(server, options, next) {
     {
       method: 'POST',
       path: '/sessions',
-      handler: function(request, reply){
-        var db = request.server.plugins['hapi-mongodb'].db;
+      config: {
+        handler: function(request, reply){
+          var db = request.server.plugins['hapi-mongodb'].db;
 
-        var user = request.payload.user;
+          var user = request.payload.user;
 
-        db.collection('users').findOne( { email: user.email }, function(err, userMongo) {
-          if (err) {
-            return reply('Internal MongoDb error');
-          }
-
-          if (userMongo === null) {
-            return reply( {userExist: false} );
-          }
-
-          Bcrypt.compare(user.password, userMongo.password, function(err,same) {
-            if (!same) {
-              return reply( {authorized: false} );
+          db.collection('users').findOne( { email: user.email }, function(err, userMongo) {
+            if (err) {
+              return reply('Internal MongoDb error');
             }
 
-            var randomKeyGenerator = function() {
-              return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
-            };
+            if (userMongo === null) {
+              return reply('No existing email');
+            }
 
-            var session = {
-              user_id: userMongo._id,
-              session_id: randomKeyGenerator()
-            };
-
-            db.collection('sessions').insert(session, function(err, writeResult) {
-              if (err) {
-                return reply('Internal MongoDb error');
+            Bcrypt.compare(user.password, userMongo.password, function(err,same) {
+              if (!same) {
+                return reply('Password doesnt match');
               }
 
-              request.session.set('sweeet_session', session);
+              var randomKeyGenerator = function() {
+                return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+              };
 
-              reply({ authorized: true });
+              var session = {
+                user_id: userMongo._id,
+                session_id: randomKeyGenerator()
+              };
+
+              db.collection('sessions').insert(session, function(err, writeResult) {
+                if (err) {
+                  return reply('Internal MongoDb error');
+                }
+
+                request.session.set('sweeet_session', session);
+
+                reply({ authorized: true });
+              });
             });
           });
-        });
-
+        },
+        validate: {
+          payload: {
+            user: {
+              email: Joi.string().email().max(50).required(),
+              password: Joi.string().min(5).max(20).required()
+            }
+          }
+        }
       }
     },
     {

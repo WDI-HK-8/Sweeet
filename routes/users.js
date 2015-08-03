@@ -22,7 +22,7 @@ exports.register = function(server, options, next){
 
             db.collection('users').count(uniqUserQuery, function(err, userExist){
               if (userExist) {
-                return reply('Error: User already exists');
+                return reply('Username or Email already exists');
               }
 
               Bcrypt.genSalt(10, function(err, salt){

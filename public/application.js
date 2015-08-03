@@ -19,8 +19,8 @@ $(document).ready(function(){
       dataType: 'json',
       success: function(response){
         console.log("create profile", response);
-        $('.signup-error').addClass('hidden').text(response.responseText);
-        $('.signup-success').removeClass('hidden').text('Congratulation! You successfully signed up.');
+        $('.signup-error').addClass('hidden');
+        $('.signup-success').removeClass('hidden').text('Congratulations! You successfully signed up.');
         setTimeout(function(){
           location.reload(true);
         },2000)},
@@ -34,8 +34,8 @@ $(document).ready(function(){
   Profile.prototype.signIn = function(email, password){
     $.ajax({
       context: this,
-      type: 'GET',
-      url: '/users',
+      type: 'POST',
+      url: '/sessions',
       data: {
           user: {
             email: email,
@@ -44,13 +44,22 @@ $(document).ready(function(){
       },
       dataType: 'json',
       success: function(response){
-        console.log('Profile loggedin');
+        console.log('Profile loggedin',response);
+        $('.signin-error').addClass('hidden');
+        $('.signin-success').removeClass('hidden').text('Congratulations! You successfully signed in.');
+        setTimeout(function(){
+          location.reload(true);
+        },2000)},
+      error: function(response){
+        console.log('error',response);
+        $('.signin-error').removeClass('hidden').text(response.responseText);
       }
     });
   };
 
 
   var profile = new Profile();
+
 
   $('#signup-form').submit(function(){
     event.preventDefault();
@@ -69,7 +78,7 @@ $(document).ready(function(){
     var email = $('#signin-email').val();
     var password = $('#signin-password').val();
 
-    profile.signIn(username, password);
+    profile.signIn(email, password);
 
   });
 
