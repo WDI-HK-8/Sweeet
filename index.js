@@ -14,7 +14,15 @@ server.connection({
   }
 });
 
+server.views({
+  engines: {
+    html: require('handlebars')
+  },
+  path: Path.join(__dirname, 'templates') //
+});
+
 var plugins = [
+  { register: require('./routes/static-pages.js')},
   { register: require('./routes/users.js') },
   { register: require('./routes/sessions.js')},
   {
