@@ -1,0 +1,31 @@
+body {
+  font-family: 'Lato';
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.navbar-brand {
+  font-family: 'Roboto';
+  font-size: 34px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+
+.brand-country {
+  font-size: 16px;
+  font-family: 'Lato';
+  font-weight: 100;
+}
+
+.navbar-left {
+  margin-left: 10%;
+}
+
+.search-district {
+  width: 300px;
+}

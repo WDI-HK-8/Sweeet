@@ -2,8 +2,104 @@
 <html>
 <head>
   <title>Sweeet - Best cafes for freelancers and entrepreneurs to work from</title>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="public/application.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="public/css/custom.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,400|Roboto">
+
 </head>
 <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid wrap">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">sweeet <span class="brand-country">Hong Kong</span></a>
+      </div>
 
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form action="" class="navbar-form navbar-left">
+           <div class="input-group search-district">
+               <input type="Search" placeholder="Central, Wanchai, Causeway Bay..." class="form-control" />
+               <div class="input-group-btn">
+                   <button class="btn btn-default">
+                   <span class="glyphicon glyphicon-search"></span>
+                   </button>
+               </div>
+           </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign In</button>
+            <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create your account</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form id="signin-form">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="signin-email" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="signin-password" placeholder="Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary" href="/">Sign up</button>
+                      <div class="alert alert-success signin-success hidden" role="alert"></div>
+                      <div class="alert alert-danger signin-error hidden" role="alert"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign Up</button>
+            <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create your account</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form id="signup-form">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" id="signup-username" placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="signup-email" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="signup-password" placeholder="Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary" href="/">Sign up</button>
+                      <div class="alert alert-success signup-success hidden" role="alert"></div>
+                      <div class="alert alert-danger signup-error hidden" role="alert"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>
 </html>
