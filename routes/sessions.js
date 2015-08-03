@@ -1,7 +1,7 @@
 var Bcrypt = require('bcrypt');
 var Auth = require('./auth');
 
-exports.register = function(server, options, next){
+exports.register = function(server, options, next) {
 
   server.route([
     {
@@ -12,7 +12,7 @@ exports.register = function(server, options, next){
 
         var user = request.payload.user;
 
-        db.collection('users').findOne( { email: user.email }, function(err, userMongo){
+        db.collection('users').findOne( { email: user.email }, function(err, userMongo) {
           if (err) {
             return reply('Internal MongoDb error');
           }
@@ -21,7 +21,7 @@ exports.register = function(server, options, next){
             return reply( {userExist: false} );
           }
 
-          Bcrypt.compare(user.password, userMongo.password, function(err,same){
+          Bcrypt.compare(user.password, userMongo.password, function(err,same) {
             if (!same) {
               return reply( {authorized: false} );
             }
@@ -35,7 +35,7 @@ exports.register = function(server, options, next){
               session_id: randomKeyGenerator()
             };
 
-            db.collection('sessions').insert(session, function(err, writeResult){
+            db.collection('sessions').insert(session, function(err, writeResult) {
               if (err) {
                 return reply('Internal MongoDb error');
               }
@@ -52,13 +52,29 @@ exports.register = function(server, options, next){
     {
       method: 'GET',
       path: '/sessions/authenticated',
-      handler: function(request, reply){
+      handler: function(request, reply) {
         var callback = function(result) {
           reply(result);
         };
 
         Auth.authenticated(request, callback);
 
+      }
+    },
+    {
+      method: 'DELETE',
+      path: '/sessions',
+      handler: function(request,reply){
+        var session = request.session.get('sweeet_session');
+        var db = request.server.plugins['hapi-mongodb'].db;
+
+        if (!session) { return reply('Already logged out') }
+
+        db.collection('users').remove( { session: session.session_id }, function(err,writeResult) {
+          if (err) { return reply('Internal MongoDB error') }
+
+          reply(writeResult);
+        });
       }
     }
   ]);
