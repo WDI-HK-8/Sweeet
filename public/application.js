@@ -18,12 +18,18 @@ $(document).ready(function(){
       },
       dataType: 'json',
       success: function(response){
+        
         console.log("create profile", response);
+        
         $('.signup-error').addClass('hidden');
         $('.signup-success').removeClass('hidden').text('Congratulations! You successfully signed up.');
+        
         setTimeout(function(){
           location.reload(true);
-        },2000)},
+        },2000);
+        
+        this.signIn(email,password);
+      },
       error: function(response){
         console.log('error',response);
         $('.signup-error').removeClass('hidden').text(response.responseText);
@@ -44,12 +50,16 @@ $(document).ready(function(){
       },
       dataType: 'json',
       success: function(response){
+        
         console.log('Profile loggedin',response);
+        
         $('.signin-error').addClass('hidden');
         $('.signin-success').removeClass('hidden').text('Congratulations! You successfully signed in.');
+        
         setTimeout(function(){
           location.reload(true);
-        },2000)},
+        },2000);
+      },
       error: function(response){
         console.log('error',response);
         $('.signin-error').removeClass('hidden').text(response.responseText);
@@ -57,9 +67,27 @@ $(document).ready(function(){
     });
   };
 
+  Profile.prototype.checkSession = function(){
+    $.ajax({
+      context: this,
+      type: 'GET',
+      url: '/sessions/authenticated',
+      success: function(response){
+        if (response.authenticated) {
+          $('#signin-form-button').addClass('hidden');
+          $('#signup-form-button').addClass('hidden');
+          $('#loggedin-email').removeClass('hidden');
+          console.log('authenticated',response)
+        } else {
+          console.log('not authenticated',response)
+        }
+      }
+    });
+  };
 
   var profile = new Profile();
 
+  profile.checkSession();
 
   $('#signup-form').submit(function(){
     event.preventDefault();
