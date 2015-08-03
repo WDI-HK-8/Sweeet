@@ -16,7 +16,7 @@ server.connection({
 
 var plugins = [
   { register: require('./routes/users.js') },
-  // { register: require('./routes/sessions.js')},
+  { register: require('./routes/sessions.js')},
   {
     register: require('yar'),
     options: {
