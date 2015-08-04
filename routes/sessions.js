@@ -76,11 +76,12 @@ exports.register = function(server, options, next) {
       path: '/sessions',
       handler: function(request,reply){
         var session = request.session.get('sweeet_session');
+
         var db = request.server.plugins['hapi-mongodb'].db;
 
         if (!session) { return reply('Already logged out') }
 
-        db.collection('users').remove( { session: session.session_id }, function(err,writeResult) {
+        db.collection('sessions').remove( { "session_id": session.session_id }, function(err,writeResult) {
           if (err) { return reply('Internal MongoDB error') }
 
           reply(writeResult);

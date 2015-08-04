@@ -26,7 +26,7 @@ $(document).ready(function(){
         
         setTimeout(function(){
           location.reload(true);
-        },2000);
+        },1000);
         
         this.signIn(email,password);
       },
@@ -50,7 +50,7 @@ $(document).ready(function(){
       },
       dataType: 'json',
       success: function(response){
-        
+
         console.log('Profile loggedin',response);
         
         $('.signin-error').addClass('hidden');
@@ -58,7 +58,7 @@ $(document).ready(function(){
         
         setTimeout(function(){
           location.reload(true);
-        },2000);
+        },1000);
       },
       error: function(response){
         console.log('error',response);
@@ -85,6 +85,21 @@ $(document).ready(function(){
     });
   };
 
+  Profile.prototype.signOut = function(){
+    $.ajax({
+      context: this,
+      type: 'DELETE',
+      url: '/sessions',
+      success: function(response){
+        location.reload(true);
+        console.log('logged out',response)
+      },
+      error: function(response){
+        console.log('error',response);
+      }
+    });
+  }
+
   var profile = new Profile();
 
   profile.checkSession();
@@ -108,6 +123,10 @@ $(document).ready(function(){
 
     profile.signIn(email, password);
 
+  });
+
+  $('#signout').click(function(){
+    profile.signOut();
   });
 
 
