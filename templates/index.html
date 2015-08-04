@@ -37,6 +37,115 @@
            </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
+          <li id="addspot-form-button" class="hidden">
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#addspot-modal">Add a Spot</button>
+            <div class="modal fade" id="addspot-modal" tabindex="-1" role="dialog" aria-labelledby="addspot-label">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addspot-label">Add a spot</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form id="addspot-form">
+                      <div class="form-group">
+                        <label for="addspot-name">Name</label>
+                        <input type="text" class="form-control" id="addspot-name" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-type">Type</label>
+                        <select class="form-control" id="addspot-type">
+                          <option>Cafe</option>
+                          <option>Coworking space</option>
+                          <option>Restaurant</option>
+                          <option>Hotel lounge</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-address">Address</label>
+                        <input type="text" class="form-control" id="addspot-address" placeholder="Address">
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-district">District</label>
+                        <select class="form-control" id="addspot-district">
+                          <option>Central and Western</option>
+                          <option>Wanchai</option>
+                          <option>Eastern</option>
+                          <option>Southern</option>
+                          <option>Yau Tsim Mong</option>
+                          <option>Kowloon City</option>
+                          <option>Sham Shui Po</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-city">City</label>
+                        <select class="form-control" id="addspot-city">
+                          <option>Hong Kong</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-wifitype">Wifi Type</label>
+                        <select class="form-control" id="addspot-wifitype">
+                          <option>Free</option>
+                          <option>Paid</option>
+                          <option>None</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-wifispeed">Wifi Speed</label>
+                        <select class="form-control" id="addspot-wifispeed">
+                          <option>Slow</option>
+                          <option>Normal</option>
+                          <option>Fast</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-wifipassword">Wifi Password</label>
+                        <input type="text" class="form-control" id="addspot-wifipassword" placeholder="Wifi password">
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-price">Price</label>
+                        <select class="form-control" id="addspot-price">
+                          <option>Cheap</option>
+                          <option>Normal</option>
+                          <option>Expensive</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-outlets">Outlets</label>
+                        <select class="form-control" id="addspot-outlets">
+                          <option>None</option>
+                          <option>Few</option>
+                          <option>Normal</option>
+                          <option>Plenty</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-seats">Seats</label>
+                        <select class="form-control" id="addspot-seats">
+                          <option>Few</option>
+                          <option>Normal</option>
+                          <option>Plenty</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-food">Food</label>
+                        <select class="form-control" id="addspot-food">
+                          <option>None</option>
+                          <option>Pastries</option>
+                          <option>Full meal</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary" href="/">Submit this spot</button>
+                      <div class="alert alert-success addspot-success hidden" role="alert"></div>
+                      <div class="alert alert-danger addspot-error hidden" role="alert"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
           <li id="signin-form-button">
             <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign In</button>
             <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
