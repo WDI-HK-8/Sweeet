@@ -4,8 +4,10 @@
   <title>Sweeet - Best cafes for freelancers and entrepreneurs to work from</title>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="public/application.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="public/application.js"></script>
+  <script type="text/javascript" src="public/spots-app.js"></script>
+
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/custom.css">
@@ -137,6 +139,10 @@
                           <option>Full meal</option>
                         </select>
                       </div>
+                      <div class="form-group">
+                        <label for="addspot-picture">Picture Url</label>
+                        <input type="text" class="form-control" id="addspot-picture" placeholder="Picture Url">
+                      </div>
                       <button type="submit" class="btn btn-primary" href="/">Submit this spot</button>
                       <div class="alert alert-success addspot-success hidden" role="alert"></div>
                       <div class="alert alert-danger addspot-error hidden" role="alert"></div>
@@ -219,5 +225,12 @@
       </div>
     </div>
   </nav>
+  <div>
+    <div class="container-fluid wrap">
+      <div id="spots-list" class="col-xs-12">
+        
+      </div>
+    </div>
+  </div>
 </body>
 </html>

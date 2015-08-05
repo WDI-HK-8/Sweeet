@@ -27,6 +27,7 @@ exports.register = function(server,options,next) {
                 'outlets': request.payload.spot.outlets,
                 'seats': request.payload.spot.seats,
                 'food': request.payload.spot.food,
+                'picture': request.payload.spot.picture,
                 'user_id': session.user_id
               }
               
@@ -54,10 +55,24 @@ exports.register = function(server,options,next) {
               price: Joi.string().required(),
               outlets: Joi.string().required(),
               seats: Joi.string().required(),
-              food: Joi.string().required()
+              food: Joi.string().required(),
+              picture: Joi.string().allow('')
             }
           }
         }
+      }
+    },
+    {
+      method: 'GET',
+      path: '/spots',
+      handler: function(request,reply){
+        var db = request.server.plugins['hapi-mongodb'].db;
+
+        db.collection('spots').find().toArray(function(err,list){
+          if (err) { return reply('Internal MongoDB error', err); }
+          
+          reply(list);
+        });
       }
     }
   ]);
