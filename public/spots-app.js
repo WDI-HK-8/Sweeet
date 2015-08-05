@@ -1,29 +1,41 @@
 $(document).ready(function(){
   
   var Spot = function(){
-
+    this.name;
+    this.type;
+    this.address;
+    this.district;
+    this.city;
+    this.wifitype;
+    this.wifispeed;
+    this.wifipassword;
+    this.price;
+    this.outlets;
+    this.seats;
+    this.food;
+    this.picture;
   };
 
-  Spot.prototype.addSpot = function(details) {
+  Spot.prototype.addSpot = function() {
     $.ajax({
       context: this,
       type: 'POST',
       url: '/spots',
       data: {
         spot: {
-          'name': details.name,
-          'type': details.type,
-          'address': details.address,
-          'district': details.district,
-          'city': details.city,
-          'wifitype': details.wifitype,
-          'wifispeed': details.wifispeed,
-          'wifipassword': details.wifipassword,
-          'price': details.price,
-          'outlets': details.outlets,
-          'seats': details.seats,
-          'food': details.food,
-          'picture': details.picture,
+          'name': this.name,
+          'type': this.type,
+          'address': this.address,
+          'district': this.district,
+          'city': this.city,
+          'wifitype': this.wifitype,
+          'wifispeed': this.wifispeed,
+          'wifipassword': this.wifipassword,
+          'price': this.price,
+          'outlets': this.outlets,
+          'seats': this.seats,
+          'food': this.food,
+          'picture': this.picture,
           'dateadded': new Date()
         }
       },
@@ -79,22 +91,20 @@ $(document).ready(function(){
   spot.showAllSpots();
 
   $('#addspot-form').submit(function(){
-    var details = {
-      'name': $('#addspot-name').val(),
-      'type': $('#addspot-type option:selected').text(),
-      'address': $('#addspot-address').val(),
-      'district': $('#addspot-district option:selected').text(),
-      'city': $('#addspot-city option:selected').text(),
-      'wifitype': $('#addspot-wifitype option:selected').text(),
-      'wifispeed': $('#addspot-wifispeed option:selected').text(),
-      'wifipassword': $('#addspot-wifipassword').val(),
-      'price': $('#addspot-price option:selected').text(),
-      'outlets': $('#addspot-outlets option:selected').text(),
-      'seats': $('#addspot-seats option:selected').text(),
-      'food': $('#addspot-food option:selected').text(),
-      'picture': $('#addspot-picture').val()
-    };
+      spot.name = $('#addspot-name').val();
+      spot.type = $('#addspot-type option:selected').text();
+      spot.address = $('#addspot-address').val();
+      spot.district = $('#addspot-district option:selected').text();
+      spot.city = $('#addspot-city option:selected').text();
+      spot.wifitype = $('#addspot-wifitype option:selected').text();
+      spot.wifispeed = $('#addspot-wifispeed option:selected').text();
+      spot.wifipassword = $('#addspot-wifipassword').val();
+      spot.price = $('#addspot-price option:selected').text();
+      spot.outlets = $('#addspot-outlets option:selected').text();
+      spot.seats = $('#addspot-seats option:selected').text();
+      spot.food = $('#addspot-food option:selected').text();
+      spot.picture = $('#addspot-picture').val();
 
-    spot.addSpot(details);
+    spot.addSpot();
   });
 });
