@@ -76,6 +76,21 @@ exports.register = function(server,options,next) {
           reply(list);
         });
       }
+    },
+    {
+      method: 'GET',
+      path: '/spots/{id}',
+      handler: function(request,reply){
+        var db = request.server.plugins['hapi-mongodb'].db;
+        var spot_id = encodeURIComponent(request.params.id);
+        var ObjectId = request.server.plugins['hapi-mongodb'].ObjectID;
+
+        db.collection('spots').findOne( { "_id": ObjectId(spot_id) }, function(err,spot){
+          if (err) { return reply('Internal MongoDB error', err); }
+          
+          reply(spot);
+        });
+      }
     }
   ]);
 
