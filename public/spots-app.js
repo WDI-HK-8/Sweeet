@@ -64,8 +64,8 @@ $(document).ready(function(){
         var html = '';
 
           response.forEach(function(item){
-            html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4">'
-            html +=     '<h3>' + item.name + '</h3>'
+            html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
+            html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal">' + item.name + '</h3>'
             html +=     '<img src="' + item.picture + '" class="img-responsive">'
             html +=     '<p>' + item.district + '</p>'
             html +=     '<div class="ratings-spot col-lg-12">'
@@ -82,6 +82,37 @@ $(document).ready(function(){
           });
 
         $('#spots-list').html(html);
+      }
+    });
+  };
+
+  Spot.prototype.showOneSpot = function(id){
+    $.ajax({
+      context: this,
+      type: 'GET',
+      url: '/spots/' + id,
+      success: function(response){
+        console.log('spot details',response);
+        
+        var html = '';
+
+        html +=   '<div class="modal-header">'
+        html +=     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+        html +=     '<h3 class="modal-title" id="spot-modal">' + response.name + '</h3>'
+        html +=   '</div>'
+        html +=   '<div class="modal-body">'
+        html +=     '<img src="' + response.picture + '" class="img-responsive">'
+        html +=      '<h4>' + response.type + '</h4>'
+        html +=      '<p>' + response.address + '</p>'
+        html +=      '<p>' + response.district + '</p>'
+        html +=      '<p><span class="glyphicon glyphicon-signal"></span> ' + response.wifispeed + ' ' + response.wifitype + '</p>'
+        html +=      '<p><span class="glyphicon glyphicon-flash"></span> ' + response.outlets + '</p>'
+        html +=      '<p><span class="glyphicon glyphicon-usd"></span> ' + response.price + '</p>'
+        html +=      '<p><span class="glyphicon glyphicon-cutlery"></span> ' + response.food + '</p>'
+        html +=      '<p><span class="glyphicon glyphicon-user"></span> ' + response.seats + '</p>'
+        html +=   '</div>'
+
+        $('#spot-modal-content').html(html);
       }
     });
   };
@@ -106,5 +137,10 @@ $(document).ready(function(){
       spot.picture = $('#addspot-picture').val();
 
     spot.addSpot();
+  });
+
+  $(document).on('click','.spots-item-click', function(){
+    var id = $(this).parent().data('id');
+    spot.showOneSpot(id);
   });
 });
