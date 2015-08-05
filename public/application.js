@@ -132,25 +132,5 @@ $(document).ready(function(){
     profile.signOut();
   });
 
-  $('#addspot-form').submit(function(){
-    var details = {
-      'name': $('#addspot-name').val(),
-      'type': $('#addspot-type option:selected').text(),
-      'address': $('#addspot-address').val(),
-      'district': $('#addspot-district option:selected').text(),
-      'city': $('#addspot-city option:selected').text(),
-      'wifitype': $('#addspot-wifitype option:selected').text(),
-      'wifispeed': $('#addspot-wifispeed option:selected').text(),
-      'wifipassword': $('#addspot-wifipassword').val(),
-      'price': $('#addspot-price option:selected').text(),
-      'outlets': $('#addspot-outlets option:selected').text(),
-      'seats': $('#addspot-seats option:selected').text(),
-      'food': $('#addspot-food option:selected').text(),
-      'picture': $('#addspot-picture').val()
-    };
-
-    spot.addSpot(details);
-
-  });
 
 });

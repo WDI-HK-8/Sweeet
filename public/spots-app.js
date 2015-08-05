@@ -23,7 +23,8 @@ $(document).ready(function(){
           'outlets': details.outlets,
           'seats': details.seats,
           'food': details.food,
-          'picture': details.picture
+          'picture': details.picture,
+          'dateadded': new Date()
         }
       },
       success: function(response) {
@@ -35,6 +36,7 @@ $(document).ready(function(){
         },1000);
       },
       error: function(response) {
+        console.log('error',response);
         $('.addspot-error').removeClass('hidden').text(response.responseText);
       }
     });
