@@ -70,11 +70,19 @@ exports.register = function(server,options,next) {
       handler: function(request,reply){
         var db = request.server.plugins['hapi-mongodb'].db;
 
-        db.collection('spots').find().toArray(function(err,list){
-          if (err) { return reply('Internal MongoDB error', err); }
-          
-          reply(list);
-        });
+        if (!request.query) {
+          db.collection('spots').find().toArray(function(err,list){
+            if (err) { return reply('Internal MongoDB error', err); }
+            
+            reply(list);
+          });
+        } else {
+          db.collection('spots').find(request.query).toArray(function(err,list){
+            if (err) { return reply('Internal MongoDB error', err); }
+            
+            reply(list);
+          });
+        }
       }
     },
     {

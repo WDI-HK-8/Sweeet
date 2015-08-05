@@ -117,11 +117,45 @@ $(document).ready(function(){
     });
   };
 
+  Spot.prototype.filterSpots = function(filterKey,filterValue){
+    $.ajax({
+      context: this,
+      type: 'GET',
+      url: '/spots?'+ filterKey + '=' + filterValue,
+      success: function(response){
+        console.log('search spots',response)
+        var html = '';
+
+          response.forEach(function(item){
+            html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
+            html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal">' + item.name + '</h3>'
+            html +=     '<img src="' + item.picture + '" class="img-responsive">'
+            html +=     '<p>' + item.district + '</p>'
+            html +=     '<div class="ratings-spot col-lg-12">'
+            html +=       '<div class="col-lg-6">'
+            html +=         '<p><span class="glyphicon glyphicon-signal"></span> ' + item.wifispeed + '</p>'
+            html +=         '<p><span class="glyphicon glyphicon-flash"></span> ' + item.outlets + '</p>'
+            html +=       '</div>'
+            html +=       '<div class="col-lg-6">'
+            html +=         '<p><span class="glyphicon glyphicon-usd"></span> ' + item.price + '</p>'
+            html +=         '<p><span class="glyphicon glyphicon-cutlery"></span> ' + item.food + '</p>'
+            html +=       '</div>'
+            html +=     '</div>'
+            html +=   '</div>'
+          });
+
+        $('#spots-list').html(html);
+      }
+    });
+  }
+
   var spot = new Spot();
 
   spot.showAllSpots();
 
-  $('#addspot-form').submit(function(){
+  $(document).on('submit','#addspot-form',function(){
+    event.preventDefault;
+    
       spot.name = $('#addspot-name').val();
       spot.type = $('#addspot-type option:selected').text();
       spot.address = $('#addspot-address').val();
@@ -139,8 +173,27 @@ $(document).ready(function(){
     spot.addSpot();
   });
 
-  $(document).on('click','.spots-item-click', function(){
+  $(document).on('click','.spots-item-click',function(){
+    event.preventDefault;
+
     var id = $(this).parent().data('id');
     spot.showOneSpot(id);
   });
+
+  $(document).on('click keypress','#search-district-btn',function(e){
+    event.preventDefault;
+
+    var searchValue = $('#search-district').val();
+    
+    if (e.which === 13 || e.type === 'click') {
+      $('#spots-list').children().remove();
+
+      if (searchValue === '') {
+        spot.showAllSpots();
+      } else {
+        spot.filterSpots('district',searchValue);
+      }
+    }
+  });
+
 });
