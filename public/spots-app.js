@@ -55,12 +55,16 @@ $(document).ready(function(){
   };
 
   Spot.prototype.showAllSpots = function(){
+    
+    this.loadingScreen();
+
     $.ajax({
       context: this,
       type: 'GET',
       url: '/spots',
       success: function(response){
         console.log('list spots',response)
+
         var html = '';
 
           response.forEach(function(item){
@@ -82,6 +86,12 @@ $(document).ready(function(){
           });
 
         $('#spots-list').html(html);
+
+        setTimeout(function(){
+          $('#spots-list').show();
+          $('#loading').hide();
+        },1000);
+
       }
     });
   };
@@ -117,12 +127,15 @@ $(document).ready(function(){
   };
 
   Spot.prototype.filterSpots = function(filterKey,filterValue){
+    this.loadingScreen();
+
     $.ajax({
       context: this,
       type: 'GET',
       url: '/spots?'+ filterKey + '=' + filterValue,
       success: function(response){
-        console.log('search spots',response)
+        console.log('search spots',response);
+
         var html = '';
 
           response.forEach(function(item){
@@ -142,18 +155,28 @@ $(document).ready(function(){
             html +=     '</div>'
             html +=   '</div>'
           });
-
-        $('#spots-list').html(html);
+        
+        setTimeout(function(){
+          $('#spots-list').show();
+          $('#loading').hide();
+        },1000);
       }
     });
-  }
+  };
+
+  Spot.prototype.loadingScreen = function(){
+    $('#spots-list').hide();
+    $('#loading').show();
+  };
+
+
 
   var spot = new Spot();
 
   spot.showAllSpots();
 
-  $(document).on('submit','#addspot-form',function(){
-    event.preventDefault;
+  $(document).on('submit','#addspot-form',function(e){
+    e.preventDefault;
 
       spot.name = $('#addspot-name').val();
       spot.type = $('#addspot-type option:selected').text();
@@ -172,15 +195,15 @@ $(document).ready(function(){
     spot.addSpot();
   });
 
-  $(document).on('click','.spots-item-click',function(){
-    event.preventDefault;
+  $(document).on('click','.spots-item-click',function(e){
+    e.preventDefault;
 
     var id = $(this).parent().data('id');
     spot.showOneSpot(id);
   });
 
   $(document).on('click keypress','#search-district-btn',function(e){
-    event.preventDefault;
+    e.preventDefault;
 
     var searchValue = $('#search-district').val();
     
