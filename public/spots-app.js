@@ -54,6 +54,30 @@ $(document).ready(function(){
     });
   };
 
+  Spot.prototype.displaySpots = function(list){
+    var html = '';
+
+      list.forEach(function(item){
+        html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
+        html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal"><a href="#">' + item.name + '</a></h3>'
+        html +=     '<img src="' + item.picture + '" class="img-responsive img-rounded">'
+        html +=     '<h4>' + item.district + '</h4>'
+        html +=     '<div class="ratings-spot col-xs-12">'
+        html +=       '<div class="col-xs-6">'
+        html +=         '<p><span class="glyphicon glyphicon-signal"></span> ' + item.wifispeed + '</p>'
+        html +=         '<p><span class="glyphicon glyphicon-flash"></span> ' + item.outlets + '</p>'
+        html +=       '</div>'
+        html +=       '<div class="col-xs-6">'
+        html +=         '<p><span class="glyphicon glyphicon-usd"></span> ' + item.price + '</p>'
+        html +=         '<p><span class="glyphicon glyphicon-cutlery"></span> ' + item.food + '</p>'
+        html +=       '</div>'
+        html +=     '</div>'
+        html +=   '</div>'
+      });
+
+    $('#spots-list').html(html);
+  }
+
   Spot.prototype.showAllSpots = function(){
     
     this.loadingScreen();
@@ -65,27 +89,7 @@ $(document).ready(function(){
       success: function(response){
         console.log('list spots',response)
 
-        var html = '';
-
-          response.forEach(function(item){
-            html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
-            html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal"><a href="#">' + item.name + '</a></h3>'
-            html +=     '<img src="' + item.picture + '" class="img-responsive img-rounded">'
-            html +=     '<h4>' + item.district + '</h4>'
-            html +=     '<div class="ratings-spot col-xs-12">'
-            html +=       '<div class="col-xs-6">'
-            html +=         '<p><span class="glyphicon glyphicon-signal"></span> ' + item.wifispeed + '</p>'
-            html +=         '<p><span class="glyphicon glyphicon-flash"></span> ' + item.outlets + '</p>'
-            html +=       '</div>'
-            html +=       '<div class="col-xs-6">'
-            html +=         '<p><span class="glyphicon glyphicon-usd"></span> ' + item.price + '</p>'
-            html +=         '<p><span class="glyphicon glyphicon-cutlery"></span> ' + item.food + '</p>'
-            html +=       '</div>'
-            html +=     '</div>'
-            html +=   '</div>'
-          });
-
-        $('#spots-list').html(html);
+        this.displaySpots(response);
 
         setTimeout(function(){
           $('#spots-list').show();
@@ -136,25 +140,7 @@ $(document).ready(function(){
       success: function(response){
         console.log('search spots',response);
 
-        var html = '';
-
-          response.forEach(function(item){
-            html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
-            html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal">' + item.name + '</h3>'
-            html +=     '<img src="' + item.picture + '" class="img-responsive img-rounded">'
-            html +=     '<p>' + item.district + '</p>'
-            html +=     '<div class="ratings-spot col-xs-12">'
-            html +=       '<div class="col-xs-6">'
-            html +=         '<p><span class="glyphicon glyphicon-signal"></span> ' + item.wifispeed + '</p>'
-            html +=         '<p><span class="glyphicon glyphicon-flash"></span> ' + item.outlets + '</p>'
-            html +=       '</div>'
-            html +=       '<div class="col-xs-6">'
-            html +=         '<p><span class="glyphicon glyphicon-usd"></span> ' + item.price + '</p>'
-            html +=         '<p><span class="glyphicon glyphicon-cutlery"></span> ' + item.food + '</p>'
-            html +=       '</div>'
-            html +=     '</div>'
-            html +=   '</div>'
-          });
+        this.displaySpots(response);
         
         setTimeout(function(){
           $('#spots-list').show();
