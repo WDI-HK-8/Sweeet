@@ -2,6 +2,24 @@ body {
   font-family: 'Lato';
 }
 
+h1,h2,h3 {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+h4,h5 {
+  font-family: 'Roboto';
+  font-weight: 100;
+}
+
+a {
+  color: #333;
+}
+
+a:hover {
+  color: #333;
+}
+
 .wrap {
   margin: 0 auto;
   max-width: 960px;
@@ -9,7 +27,7 @@ body {
 
 .navbar-brand {
   font-family: 'Roboto';
-  font-size: 34px;
+  font-size: 40px;
 }
 
 .navbar-inverse .navbar-brand {
@@ -28,4 +46,65 @@ body {
 
 .search-district {
   width: 300px;
+}
+
+.spots-item:hover {
+  background-color: #F9F9F9;
+}
+
+#search-district {
+  border: 1px solid white;
+}
+
+.navbar-btn {
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  margin-left: 5px;
+}
+
+.navbar-btn:hover,.navbar-btn:focus {
+  border: 1px solid white;
+  color: #222;
+  background-color: white;
+  margin-left: 5px;
+  box-shadow: none;
+}
+
+.navbar-btn-important,.btn-primary {
+  border: 1px solid #FB7800;
+  color: white;
+  background-color: #FB7800;
+  margin-left: 5px;
+}
+
+.navbar-btn-important:hover,.btn-primary:hover {
+  border: 1px solid #FB7800;
+  color: #FB7800;
+  background-color: transparent;
+  margin-left: 5px;
+}
+
+.navbar-btn-search {
+  background-color: white;
+  border: 1px solid white;
+}
+
+.btn-primary {
+  border: 1px solid #FB7800;
+  color: white;
+  background-color: #FB7800;
+  margin-left: 5px;
+}
+
+.btn-primary:hover {
+  border: 1px solid #FB7800;
+  color: white;
+  background-color: #FB9209;
+  margin-left: 5px;
+}
+
+.spot-modal-type {
+  font-style: italic;
+  font-weight: 100;
 }

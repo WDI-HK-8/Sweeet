@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/custom.css">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,400|Roboto">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,400|Roboto:100,400">
 
 </head>
 <body>
@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">sweeet <span class="brand-country">Hong Kong</span></a>
+        <a class="navbar-brand" href="/">sweeet <span class="brand-country">HONG KONG</span></a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -32,7 +32,7 @@
            <div class="input-group search-district">
                <input type="Search" placeholder="Central, Wanchai, Causeway Bay..." id="search-district" class="form-control" />
                <div class="input-group-btn">
-                   <button class="btn btn-default" id="search-district-btn">
+                   <button class="btn navbar-btn-search" id="search-district-btn">
                    <span class="glyphicon glyphicon-search"></span>
                    </button>
                </div>
@@ -40,13 +40,13 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li id="addspot-form-button" class="hidden">
-            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#addspot-modal">Add a Spot</button>
+            <button type="button" class="btn navbar-btn navbar-btn-important" data-toggle="modal" data-target="#addspot-modal">ADD A SPOT</button>
             <div class="modal fade" id="addspot-modal" tabindex="-1" role="dialog" aria-labelledby="addspot-label">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addspot-label">Add a spot</h4>
+                    <h2 class="modal-title" id="addspot-label">Add your favorite spot</h2>
                   </div>
                   <div class="modal-body">
                     <form id="addspot-form">
@@ -143,7 +143,7 @@
                         <label for="addspot-picture">Picture Url</label>
                         <input type="text" class="form-control" id="addspot-picture" placeholder="Picture Url">
                       </div>
-                      <button type="submit" class="btn btn-primary" href="/">Submit this spot</button>
+                      <button type="submit" class="btn btn-primary col-xs-12" href="/">SUBMIT THIS SPOT</button>
                       <div class="alert alert-success addspot-success hidden" role="alert"></div>
                       <div class="alert alert-danger addspot-error hidden" role="alert"></div>
                     </form>
@@ -153,16 +153,18 @@
             </div>
           </li>
           <li id="signin-form-button">
-            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signin-modal">Sign In</button>
+            <button type="button" class="btn navbar-btn" data-toggle="modal" data-target="#signin-modal">SIGN IN</button>
             <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Already a member?</h4>
+                    <h2 class="modal-title" id="myModalLabel">Already a member?</h2>
                   </div>
                   <div class="modal-body">
                     <form id="signin-form">
+                      <div class="alert alert-success signin-success hidden" role="alert"></div>
+                      <div class="alert alert-danger signin-error hidden" role="alert"></div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="signin-email" placeholder="Email">
@@ -171,9 +173,7 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="signin-password" placeholder="Password">
                       </div>
-                      <button type="submit" class="btn btn-primary" href="/">Sign In</button>
-                      <div class="alert alert-success signin-success hidden" role="alert"></div>
-                      <div class="alert alert-danger signin-error hidden" role="alert"></div>
+                      <button type="submit" class="btn btn-primary col-xs-12" href="/">SIGN IN</button>
                     </form>
                   </div>
                 </div>
@@ -181,16 +181,18 @@
             </div>
           </li>
           <li id="signup-form-button">
-            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#signup-modal">Sign Up</button>
+            <button type="button" class="btn navbar-btn navbar-btn-important" data-toggle="modal" data-target="#signup-modal">SIGN UP</button>
             <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Create your account</h4>
+                    <h2 class="modal-title" id="myModalLabel">Create your account</h2>
                   </div>
                   <div class="modal-body">
                     <form id="signup-form">
+                      <div class="alert alert-success signin-success hidden" role="alert"></div>
+                      <div class="alert alert-danger signin-error hidden" role="alert"></div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Username</label>
                         <input type="text" class="form-control" id="signup-username" placeholder="Username">
@@ -203,9 +205,7 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="signup-password" placeholder="Password">
                       </div>
-                      <button type="submit" class="btn btn-primary" href="/">Sign up</button>
-                      <div class="alert alert-success signup-success hidden" role="alert"></div>
-                      <div class="alert alert-danger signup-error hidden" role="alert"></div>
+                      <button type="submit" class="btn btn-primary col-xs-12" href="/">SIGN UP</button>
                     </form>
                   </div>
                 </div>
@@ -225,6 +225,11 @@
       </div>
     </div>
   </nav>
+  <div class="spots-filters">
+    <div class="container-fluid wrap">
+      <button class="btn btn-default" type="submit"></button>
+    </div>
+  </div>
   <div class="spots-view">
     <div class="container-fluid wrap">
       <div id="spots-list" class="col-xs-12">       
