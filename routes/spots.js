@@ -27,6 +27,7 @@ exports.register = function(server,options,next) {
                 'outlets': request.payload.spot.outlets,
                 'seats': request.payload.spot.seats,
                 'food': request.payload.spot.food,
+                'service': request.payload.spot.service,
                 'picture': request.payload.spot.picture,
                 'dateadded': request.payload.spot.dateadded,
                 'user_id': session.user_id
@@ -57,6 +58,7 @@ exports.register = function(server,options,next) {
               outlets: Joi.string().required(),
               seats: Joi.string().required(),
               food: Joi.string().required(),
+              service: Joi.string().required(),
               picture: Joi.string().allow(''),
               dateadded: Joi.date().required(),
             }

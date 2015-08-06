@@ -58,18 +58,80 @@ $(document).ready(function(){
     var html = '';
 
       list.forEach(function(item){
+        
+        var wifiSpeedHTML;
+        var outletsHTML;
+        var seatsHTML;
+        var serviceHTML;
+
+        if (item.wifispeed === 'Very Fast') {
+          wifiSpeedHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>'
+        } else if (item.wifispeed === 'Fast') {
+          wifiSpeedHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div></div>'
+        } else if (item.wifispeed === 'Normal') {
+          wifiSpeedHTML = '<div class="progress"><div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div></div>'
+        } else if (item.wifispeed === 'Slow') {
+          wifiSpeedHTML = '<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div></div>'
+        }
+
+        if (item.outlets === 'Plenty') {
+          outletsHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>'
+        } else if (item.outlets === 'Normal') {
+          outletsHTML = '<div class="progress"><div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div></div>'
+        } else if (item.outlets === 'Few') {
+          outletsHTML = '<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div></div>'
+        } else if (item.outlets === 'None') {
+          outletsHTML = '<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">None</div></div>'
+        }
+
+        if (item.seats === 'Plenty') {
+          seatsHTML = '<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>'
+        } else if (item.seats === 'Normal') {
+          seatsHTML = '<div class="progress"><div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div></div>'
+        } else if (item.seats === 'Few') {
+          seatsHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div></div>'
+        }
+
+        if (item.service === 'Excellent') {
+          serviceHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>'
+        } else if (item.service === 'Good') {
+          serviceHTML = '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div></div>'
+        } else if (item.service === 'Normal') {
+          serviceHTML = '<div class="progress"><div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div></div>'
+        } else if (item.service === 'Bad') {
+          serviceHTML = '<div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">None</div></div>'
+        }
+
         html +=   '<div class="spots-item col-xs-12 col-sm-6 col-md-4 col-lg-4" data-id="' + item._id + '">'
         html +=     '<h3 class="spots-item-click" data-toggle="modal" data-target="#spot-modal"><a href="#">' + item.name + '</a></h3>'
         html +=     '<img src="' + item.picture + '" class="img-responsive img-rounded">'
         html +=     '<h4>' + item.district + '</h4>'
-        html +=     '<div class="ratings-spot col-xs-12">'
-        html +=       '<div class="col-xs-6">'
-        html +=         '<p><span class="glyphicon glyphicon-signal"></span> ' + item.wifispeed + '</p>'
-        html +=         '<p><span class="glyphicon glyphicon-flash"></span> ' + item.outlets + '</p>'
+        html +=     '<div class="row">'
+        html +=       '<div class="col-xs-2">'
+        html +=         '<i class="fa fa-wifi fa-lg"></i>'
         html +=       '</div>'
-        html +=       '<div class="col-xs-6">'
-        html +=         '<p><span class="glyphicon glyphicon-usd"></span> ' + item.price + '</p>'
-        html +=         '<p><span class="glyphicon glyphicon-cutlery"></span> ' + item.food + '</p>'
+        html +=       '<div class="col-xs-4">'
+        html +=         wifiSpeedHTML;
+        html +=       '</div>'
+        html +=       '<div class="col-xs-2">'
+        html +=         '<i class="fa fa-usd fa-lg"></i>'
+        html +=       '</div>'
+        html +=       '<div class="col-xs-4">'
+        html +=         item.price
+        html +=       '</div>'
+        html +=     '</div>'
+        html +=     '<div class="row">'
+        html +=       '<div class="col-xs-2">'
+        html +=         '<i class="fa fa-plug fa-lg"></i>'
+        html +=       '</div>'
+        html +=       '<div class="col-xs-4">'
+        html +=         outletsHTML;
+        html +=       '</div>'
+        html +=       '<div class="col-xs-2">'
+        html +=         '<i class="fa fa-cutlery fa-lg"></i>'
+        html +=       '</div>'
+        html +=       '<div class="col-xs-4">'
+        html +=         item.food
         html +=       '</div>'
         html +=     '</div>'
         html +=   '</div>'
@@ -116,13 +178,21 @@ $(document).ready(function(){
         html +=   '</div>'
         html +=   '<div class="modal-body">'
         html +=     '<img src="' + response.picture + '" class="img-responsive img-rounded">'
-        html +=      '<p>' + response.address + '</p>'
-        html +=      '<p>' + response.district + '</p>'
-        html +=      '<p><span class="glyphicon glyphicon-signal"></span> ' + response.wifispeed + ' ' + response.wifitype + '</p>'
-        html +=      '<p><span class="glyphicon glyphicon-flash"></span> ' + response.outlets + '</p>'
-        html +=      '<p><span class="glyphicon glyphicon-usd"></span> ' + response.price + '</p>'
-        html +=      '<p><span class="glyphicon glyphicon-cutlery"></span> ' + response.food + '</p>'
-        html +=      '<p><span class="glyphicon glyphicon-user"></span> ' + response.seats + '</p>'
+        html +=     '<h4>' + response.address + '</h4>'
+        html +=     '<h4>' + response.district + '</h4>'
+        html +=     '<div class="row">'
+        html +=       '<div class="col-xs-6">'
+        html +=         '<h5><i class="fa fa-wifi fa-lg"></i>' + ' ' + response.wifispeed + '</h5>'
+        html +=         '<h5><i class="fa fa-plug fa-lg"></i>' + ' ' + response.outlets + '</h5>'
+        html +=         '<h5><i class="fa fa-users fa-lg"></i>' + ' ' + response.seats + '</h5>'
+        html +=         '<h5><i class="fa fa-smile-o fa-lg"></i>' + ' ' + response.service + '</h5>'
+        html +=       '</div>'
+        html +=       '<div class="col-xs-6">'
+        html +=         '<h5><i class="fa fa-signal fa-lg"></i>' + ' ' + response.wifitype + '</h5>'
+        html +=         '<h5><i class="fa fa-usd fa-lg"></i>' + ' ' + response.price + '</h5>'
+        html +=         '<h5><i class="fa fa-cutlery fa-lg"></i>' + ' ' + response.food + '</h5>'
+        html +=       '</div>'
+        html +=     '</div>'
         html +=   '</div>'
 
         $('#spot-modal-content').html(html);
@@ -130,13 +200,13 @@ $(document).ready(function(){
     });
   };
 
-  Spot.prototype.filterSpots = function(filterKey,filterValue){
+  Spot.prototype.searchSpots = function(searchKey,searchValue){
     this.loadingScreen();
 
     $.ajax({
       context: this,
       type: 'GET',
-      url: '/spots?'+ filterKey + '=' + filterValue,
+      url: '/spots?'+ searchKey + '=' + searchValue,
       success: function(response){
         console.log('search spots',response);
 
@@ -148,6 +218,10 @@ $(document).ready(function(){
         },1000);
       }
     });
+  };
+
+  Spot.prototype.filterSpots = function(filterKey,filterValue){
+
   };
 
   Spot.prototype.loadingScreen = function(){
@@ -162,7 +236,7 @@ $(document).ready(function(){
   spot.showAllSpots();
 
   $(document).on('submit','#addspot-form',function(e){
-    e.preventDefault;
+    e.preventDefault();
 
       spot.name = $('#addspot-name').val();
       spot.type = $('#addspot-type option:selected').text();
@@ -176,20 +250,21 @@ $(document).ready(function(){
       spot.outlets = $('#addspot-outlets option:selected').text();
       spot.seats = $('#addspot-seats option:selected').text();
       spot.food = $('#addspot-food option:selected').text();
+      spot.service = $('#addspot-service option:selected').text();
       spot.picture = $('#addspot-picture').val();
 
     spot.addSpot();
   });
 
   $(document).on('click','.spots-item-click',function(e){
-    e.preventDefault;
+    e.preventDefault();
 
     var id = $(this).parent().data('id');
     spot.showOneSpot(id);
   });
 
   $(document).on('click keypress','#search-district-btn',function(e){
-    e.preventDefault;
+    e.preventDefault();
 
     var searchValue = $('#search-district').val();
     
@@ -199,9 +274,20 @@ $(document).ready(function(){
       if (searchValue === '') {
         spot.showAllSpots();
       } else {
-        spot.filterSpots('district',searchValue);
+        spot.searchSpots('district',searchValue);
       }
     }
+  });
+
+
+  $(document).on('click','.filter-btn',function(e){
+    e.preventDefault();
+    console.log('button filter')
+
+    var searchKey = $(this).data('filtersearch');
+    var searchValue = $(this).data('filtervalue');
+
+    spot.searchSpots(searchKey,searchValue);
   });
 
 });

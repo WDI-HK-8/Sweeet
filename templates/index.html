@@ -4,8 +4,10 @@
   <title>Sweeet - Best cafes for freelancers and entrepreneurs to work from</title>
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="public/css/custom.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,400|Roboto:100,400">
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="public/application.js"></script>
@@ -57,10 +59,10 @@
                       <div class="form-group">
                         <label for="addspot-type">Type</label>
                         <select class="form-control" id="addspot-type">
-                          <option>Cafe</option>
-                          <option>Coworking space</option>
+                          <option>Coffee Shop</option>
+                          <option>Coworking Space</option>
                           <option>Restaurant</option>
-                          <option>Hotel lounge</option>
+                          <option>Hotel Lounge</option>
                           <option>Other</option>
                         </select>
                       </div>
@@ -71,13 +73,13 @@
                       <div class="form-group">
                         <label for="addspot-district">District</label>
                         <select class="form-control" id="addspot-district">
-                          <option>Central and Western</option>
-                          <option>Wanchai</option>
-                          <option>Eastern</option>
-                          <option>Southern</option>
-                          <option>Yau Tsim Mong</option>
-                          <option>Kowloon City</option>
-                          <option>Sham Shui Po</option>
+                          <option>Central</option>
+                          <option>Wan Chai</option>
+                          <option>Sheung Wan</option>
+                          <option>Sai Ying Pun</option>
+                          <option>Causeway Bay</option>
+                          <option>Aberdeen/option>
+                          <option>Kowloon</option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -90,6 +92,7 @@
                         <label for="addspot-wifitype">Wifi Type</label>
                         <select class="form-control" id="addspot-wifitype">
                           <option>Free</option>
+                          <option>Free - Limited in time</option>
                           <option>Paid</option>
                           <option>None</option>
                         </select>
@@ -100,6 +103,7 @@
                           <option>Slow</option>
                           <option>Normal</option>
                           <option>Fast</option>
+                          <option>Very Fast</option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -110,12 +114,12 @@
                         <label for="addspot-price">Price</label>
                         <select class="form-control" id="addspot-price">
                           <option>Cheap</option>
-                          <option>Normal</option>
+                          <option>Fair</option>
                           <option>Expensive</option>
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="addspot-outlets">Outlets</label>
+                        <label for="addspot-outlets">Plugs</label>
                         <select class="form-control" id="addspot-outlets">
                           <option>None</option>
                           <option>Few</option>
@@ -124,7 +128,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="addspot-seats">Seats</label>
+                        <label for="addspot-seats">Crowds</label>
                         <select class="form-control" id="addspot-seats">
                           <option>Few</option>
                           <option>Normal</option>
@@ -136,7 +140,16 @@
                         <select class="form-control" id="addspot-food">
                           <option>None</option>
                           <option>Pastries</option>
-                          <option>Full meal</option>
+                          <option>Full Meal</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="addspot-service">Service</label>
+                        <select class="form-control" id="addspot-service">
+                          <option>Bad</option>
+                          <option>Normal</option>
+                          <option>Good</option>
+                          <option>Excellent</option>
                         </select>
                       </div>
                       <div class="form-group">
@@ -225,12 +238,18 @@
       </div>
     </div>
   </nav>
-  <div class="spots-filters">
+  <section class="spots-filters">
     <div class="container-fluid wrap">
-      <button class="btn btn-default" type="submit"></button>
+      <div class="spots-filters-content text-center">
+        <h2>I WANT :</h2>
+        <button class="btn btn-default filter-btn" data-filtersearch="wifispeed" data-filtervalue="Fast" type="click">ROCKIN' WIFI</button>
+        <button class="btn btn-default filter-btn" data-filtersearch="outlets" data-filtervalue="Plenty" type="click">PLENTY OF PLUGS</button>
+        <button class="btn btn-default filter-btn" data-filtersearch="seats" data-filtervalue="Plenty" type="click">NO CROWD</button>
+        <button class="btn btn-default filter-btn" data-filtersearch="food" data-filtervalue="Full meal" type="click">FULL MEALS</button>
+      </div>
     </div>
-  </div>
-  <div class="spots-view">
+  </section>
+  <section class="spots-view">
     <div class="container-fluid wrap">
       <div id="loading" class="spinner">
         <div class="bounce1"></div>
@@ -240,12 +259,12 @@
       <div id="spots-list" class="col-xs-12">
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="spot-modal" tabindex="-1" role="dialog" aria-labelledby="spot-modal-label">
+  </section>
+  <section class="modal fade" id="spot-modal" tabindex="-1" role="dialog" aria-labelledby="spot-modal-label">
     <div class="modal-dialog" role="document">
       <div class="modal-content" id="spot-modal-content">
       </div>
     </div>
-  </div>
+  </section>
 </body>
 </html>

@@ -104,12 +104,33 @@ a:hover {
   margin-left: 5px;
 }
 
+.btn-default {
+  border: 1px solid black;
+  color: black;
+  background-color: transparent;
+  margin-left: 5px;
+}
+
+.btn-default:hover,.btn-default:focus {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  margin-left: 5px;
+  box-shadow: none;
+}
+
 .spot-modal-type {
   font-style: italic;
   font-weight: 100;
 }
 
+.spots-view {
+  margin-top: 20px;
+}
 
+.progress-bar {
+  color: black;
+}
 
 .spinner {
   margin: 100px auto 0;
